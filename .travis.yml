@@ -1,0 +1,20 @@
+language: go
+go:
+  - 1.12.x
+  - 1.x
+
+sudo: required
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+env:
+  - GO111MODULE=on
+
+script:
+- git clean -f -d -x
+- curl -sfL https://raw.githubusercontent.com/containous/structor/master/godownloader.sh | bash -s -- -b $GOPATH/bin v1.7.0
+- structor -o containous -r traefik --dockerfile-url="https://raw.githubusercontent.com/containous/traefik/master/docs.Dockerfile" --menu.js-url="https://raw.githubusercontent.com/containous/structor/master/traefik-menu.js.gotmpl" --exp-branch=master --debug
+
