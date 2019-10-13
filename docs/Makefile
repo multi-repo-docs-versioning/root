@@ -4,7 +4,7 @@
 #######
 
 DOCS_VERIFY_SKIP ?= true
-DOCS_LINT_SKIP ?= false
+DOCS_LINT_SKIP ?= true
 
 TRAEFIK_DOCS_BUILD_IMAGE ?= multi-repo-docs
 TRAEFIK_DOCS_CHECK_IMAGE ?= $(TRAEFIK_DOCS_BUILD_IMAGE)-check
@@ -29,8 +29,8 @@ docs-image:
 	docker build -t $(TRAEFIK_DOCS_BUILD_IMAGE) -f docs.Dockerfile ./
 
 docs-build: docs-image
-	docker run $(DOCKER_RUN_DOC_OPTS) $(TRAEFIK_DOCS_BUILD_IMAGE) sh -c "mkdocs build \
-		&& chown -R $(shell id -u):$(shell id -g) ./site"
+	docker run $(DOCKER_RUN_DOC_OPTS) $(TRAEFIK_DOCS_BUILD_IMAGE) sh -c "mkdocs build && chown -R $(shell id -u):$(shell id -g) ./site"
+
 
 docs-verify: docs-build
 	@if [ "$(DOCS_VERIFY_SKIP)" != "true" ]; then \
