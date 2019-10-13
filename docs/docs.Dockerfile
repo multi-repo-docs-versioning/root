@@ -10,4 +10,3 @@ VOLUME /mkdocs
 RUN apk --no-cache --no-progress add py3-pip \
   && pip3 install --user -r requirements.txt
 
-CMD "sh ./docker-entrypoint.sh" 
