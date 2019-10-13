@@ -27,7 +27,7 @@ deploy:
   - provider: pages
     edge: false
     github_token: ${GH_TOKEN}
-    local_dir: site
+    local_dir: site/master
     skip_cleanup: true
     on:
       repo: multi-repo-docs-versioning/root
