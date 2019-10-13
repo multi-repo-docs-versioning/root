@@ -55,6 +55,7 @@ markdown_extensions:
 nav:
   - Welcome: index.md
   - Test: test.md
+  - Test2: tests/test2.md
   - repo-docs-2: 
         - page-1: repo-docs-2/docs/page1.md
         - page-2: repo-docs-2/docs/page2.md
