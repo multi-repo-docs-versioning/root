@@ -28,8 +28,8 @@ docs-serve: docs-image
 docs-image:
 	docker build -t $(TRAEFIK_DOCS_BUILD_IMAGE) -f docs.Dockerfile ./
 
-docs-build: docs-image
-	docker run $(DOCKER_RUN_DOC_OPTS) $(TRAEFIK_DOCS_BUILD_IMAGE) sh -c "mkdocs build && chown -R $(shell id -u):$(shell id -g) ./site"
+docs-build: docs-clean docs-image
+	docker run $(DOCKER_RUN_DOC_OPTS) $(TRAEFIK_DOCS_BUILD_IMAGE) sh -c "./docker-entrypoint.sh && mkdocs build && chown -R $(shell id -u):$(shell id -g) ./site"
 
 
 docs-verify: docs-build
@@ -49,6 +49,7 @@ docs-lint:
 	fi
 
 docs-clean:
-	rm -rf $(SITE_DIR)
+	rm -rf $(SITE_DIR) 
+	rm -rf content/repo-docs-*
 
 .PHONY: all docs-verify docs docs-clean docs-build docs-lint
