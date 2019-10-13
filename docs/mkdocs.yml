@@ -54,3 +54,4 @@ markdown_extensions:
 # Page tree
 nav:
   - 'Welcome': 'index.md'
+  - 'Test': 'test.md'
