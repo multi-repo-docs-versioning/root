@@ -16,7 +16,6 @@ script:
 - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make docs; fi
 
 before_deploy:
-      git remote add gh-token "https://${GH_TOKEN}@github.com/multi-repo-docs-versioning/root.git";
       sudo -E apt-get -yq update;
       sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes  install docker-ce;
       docker version; 
@@ -27,7 +26,7 @@ deploy:
   - provider: pages
     edge: false
     github_token: ${GH_TOKEN}
-    local_dir: site/master
+    local_dir: site
     skip_cleanup: true
     on:
       repo: multi-repo-docs-versioning/root
