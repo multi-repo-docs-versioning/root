@@ -15,11 +15,10 @@ script:
 - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make docs; fi
 
 before_deploy:
-      export BEFORE_DEPLOY_RUN=1;
       sudo -E apt-get -yq update;
-      sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install docker-ce=${DOCKER_VERSION}*;
+      sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install docker-ce;
       docker version; 
-      curl -sfL https://raw.githubusercontent.com/containous/structor/master/godownloader.sh | bash -s -- -b "${GOPATH}/bin" ${STRUCTOR_VERSION}
+      curl -sfL https://raw.githubusercontent.com/containous/structor/master/godownloader.sh | bash -s -- -b "${GOPATH}/bin" v1.7.0
       structor -o containous -r traefik --dockerfile-url="https://raw.githubusercontent.com/containous/traefik/v1.7/docs.Dockerfile" --menu.js-url="https://raw.githubusercontent.com/containous/structor/master/traefik-menu.js.gotmpl" --rqts-url="https://raw.githubusercontent.com/containous/structor/master/requirements-override.txt" --force-edit-url --exp-branch=master --debug;
 
 deploy:
