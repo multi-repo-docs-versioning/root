@@ -16,6 +16,7 @@ script:
 - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make docs; fi
 
 before_deploy:
+      make docs
       sudo -E apt-get -yq update;
       sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes  install docker-ce;
       docker version; 
@@ -27,7 +28,7 @@ deploy:
   - provider: pages
     edge: false
     github_token: ${GH_TOKEN}
-    local_dir: site
+    local_dir: docs/site
     skip_cleanup: true
     on:
       repo: multi-repo-docs-versioning/root
