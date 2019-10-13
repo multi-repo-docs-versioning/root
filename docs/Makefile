@@ -31,8 +31,6 @@ docs-image:
 docs-build: docs-image
 	docker run $(DOCKER_RUN_DOC_OPTS) $(TRAEFIK_DOCS_BUILD_IMAGE) sh -c "mkdocs build \
 		&& chown -R $(shell id -u):$(shell id -g) ./site"
-	#docker run $(DOCKER_RUN_DOC_OPTS) $(TRAEFIK_DOCS_BUILD_IMAGE) sh -c "mkdocs build \
-		&& chown -R $(shell id -u):$(shell id -g) ./site"
 
 docs-verify: docs-build
 	@if [ "$(DOCS_VERIFY_SKIP)" != "true" ]; then \
