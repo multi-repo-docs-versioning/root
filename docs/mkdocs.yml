@@ -53,5 +53,11 @@ markdown_extensions:
 
 # Page tree
 nav:
-  - 'Welcome': 'index.md'
-  - 'Test': 'test.md'
+  - Welcome: index.md
+  - Test: test.md
+  - repo-docs-2: 
+        - page-1: repo-docs-2/docs/page1.md
+        - page-2: repo-docs-2/docs/page2.md
+  - repo-docs-1:
+        - page-1: repo-docs-1/docs/page1.md
+        - page-2: repo-docs-1/docs/page2.md      
