@@ -16,7 +16,7 @@ script:
 - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then make docs; fi
 
 before_deploy:
-      make docs
+      make docs;
       sudo -E apt-get -yq update;
       sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes  install docker-ce;
       docker version; 
